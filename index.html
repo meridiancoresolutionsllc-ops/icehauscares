@@ -197,6 +197,16 @@
       padding: .5rem .8rem; border-radius: 10px; position: relative;
       transition: color .2s ease, background .2s ease;
     }
+    .brand__logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+}
+.footer__logo {
+  max-width: 190px;
+  max-height: 190px;
+}
     .nav-links a:hover { color: var(--navy-800); background: var(--gray-100); }
     .nav-cta { display: flex; align-items: center; gap: .6rem; }
 
@@ -524,14 +534,14 @@
   <header class="site-header" id="top">
     <div class="container nav">
       <a href="#home" class="brand" aria-label="Ice Haus Cares home">
-        <!-- LOGO MARK — swap this SVG for your real logo image if you have one -->
-        <span class="brand__mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 21s-7-4.5-9.5-9C.5 8 2.5 4 6.5 4 9 4 12 7 12 7s3-3 5.5-3C21.5 4 23.5 8 21.5 12 19 16.5 12 21 12 21z"/>
-          </svg>
-        </span>
-        <span class="brand__name">Ice Haus Cares<span>Community Wellbeing</span></span>
-      </a>
+  <img 
+    src="images/ice-haus-cares-logo.png" 
+    alt="Ice Haus Cares logo" 
+    class="brand__logo"
+  />
+
+  <span class="brand__name">Ice Haus Cares<span>Community Wellbeing</span></span>
+</a>
 
       <!-- Primary navigation (anchors enable smooth scrolling between sections) -->
       <nav class="nav-links" id="navLinks" aria-label="Primary">
@@ -1039,8 +1049,12 @@
       <div class="footer__top">
         <div class="footer__brand">
           <a href="#home" class="brand" aria-label="Ice Haus Cares home">
-            <span class="brand__mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9C.5 8 2.5 4 6.5 4 9 4 12 7 12 7s3-3 5.5-3C21.5 4 23.5 8 21.5 12 19 16.5 12 21 12 21z"/></svg>
+  <img 
+    src="images/ice-haus-cares-logo.png" 
+    alt="Ice Haus Cares logo" 
+    class="brand__logo-full footer__logo"
+  />
+</a>
             </span>
             <span class="brand__name">Ice Haus Cares<span>Community Wellbeing</span></span>
           </a>
