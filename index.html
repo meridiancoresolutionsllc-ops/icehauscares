@@ -746,49 +746,7 @@
             <a href="https://posh.vip/e/morning-run-collective" class="btn btn--ghost btn--sm">RSVP</a>
           </article>
 
-         <!--
-           <article class="event reveal" data-delay="1">
-            <div class="event__date"><span class="m">Jun</span><span class="d">21</span></div>
-            <div class="event__body">
-              <span class="tag">Yoga</span>
-              <h3 style="margin-top:.5rem;">Mindful Mornings: Community Yoga</h3>
-              <div class="event__meta">
-                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 9:30 AM</span>
-                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Community Center <!-- REPLACE location </span>
-                <span>Free · Mats provided</span>
-              </div>
-            </div>
-            <a href="#contact" class="btn btn--ghost btn--sm">RSVP</a>
-          </article>
 
-          <article class="event reveal" data-delay="2">
-            <div class="event__date"><span class="m">Jul</span><span class="d">05</span></div>
-            <div class="event__body">
-              <span class="tag">Workshop</span>
-              <h3 style="margin-top:.5rem;">Youth Safety &amp; Wellbeing Workshop</h3>
-              <div class="event__meta">
-                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 4:00 PM</span>
-                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Ice Haus Cares HQ</span>
-                <span>Families welcome</span>
-              </div>
-            </div>
-            <a href="#contact" class="btn btn--ghost btn--sm">RSVP</a>
-          </article>
-
-          <article class="event reveal" data-delay="3">
-            <div class="event__date"><span class="m">Jul</span><span class="d">19</span></div>
-            <div class="event__body">
-              <span class="tag">Pop-Up</span>
-              <h3 style="margin-top:.5rem;">Neighborhood Wellness Pop-Up</h3>
-              <div class="event__meta">
-                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 11:00 AM</span>
-                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Main Street Plaza</span>
-                <span>Resources · Activities · Music</span>
-              </div>
-            </div>
-            <a href="#contact" class="btn btn--ghost btn--sm">RSVP</a>
-          </article>
-        </div> -->
 
         <div class="hero__cta reveal" style="margin-top:2.2rem;">
           <a href="#contact" class="btn btn--primary">Partner With Us</a>
@@ -1049,13 +1007,11 @@
       <div class="footer__top">
         <div class="footer__brand">
           <a href="#home" class="brand" aria-label="Ice Haus Cares home">
-  <img 
-    src="images/ice-haus-cares-logo.png" 
-    alt="Ice Haus Cares logo" 
-    class="brand__logo-full footer__logo"
-  />
-</a>
-            </span>
+            <img 
+              src="images/ice-haus-cares-logo.png" 
+              alt="Ice Haus Cares logo" 
+              class="brand__logo footer__logo"
+            />
             <span class="brand__name">Ice Haus Cares<span>Community Wellbeing</span></span>
           </a>
           <p class="footer__about">Safer Spaces. Healthier Communities. Stronger Futures. A community nonprofit promoting wellbeing through education, wellness, peer support, and opportunity.</p>
@@ -1106,7 +1062,81 @@
        ===================================================================== -->
 <script>
   (function () {
-    /* ---- Contact form - Netlify Forms live submit ---- */
+    "use strict";
+
+    /* ---- Mobile menu toggle ---- */
+    var toggle = document.getElementById("navToggle");
+    var nav = document.getElementById("navLinks");
+
+    if (toggle && nav) {
+      function closeMenu() {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+
+      nav.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", closeMenu);
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeMenu();
+      });
+    }
+
+    /* ---- Sticky header shadow on scroll ---- */
+    var header = document.querySelector(".site-header");
+
+    if (header) {
+      function onScroll() {
+        header.classList.toggle("scrolled", window.scrollY > 8);
+      }
+
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
+
+    /* ---- Accordion ---- */
+    document.querySelectorAll(".acc-trigger").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var expanded = btn.getAttribute("aria-expanded") === "true";
+        var panel = btn.nextElementSibling;
+
+        btn.setAttribute("aria-expanded", String(!expanded));
+
+        if (panel) {
+          panel.style.maxHeight = expanded ? null : panel.scrollHeight + "px";
+        }
+      });
+    });
+
+    /* ---- Scroll reveal animations ---- */
+    var revealEls = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+      revealEls.forEach(function (el) {
+        io.observe(el);
+      });
+    } else {
+      revealEls.forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+    }
+
+    /* ---- Contact form - Netlify Forms submit ---- */
     var contactForm = document.getElementById("contactForm");
     var formStatus = document.getElementById("formStatus");
 
@@ -1114,58 +1144,66 @@
       return new URLSearchParams(new FormData(form)).toString();
     }
 
-    contactForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+    if (contactForm && formStatus) {
+      contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-      if (!contactForm.checkValidity()) {
-        formStatus.textContent = "Please complete the required fields.";
-        formStatus.style.color = "#b23b3b";
-        return;
-      }
-
-      formStatus.textContent = "Sending...";
-      formStatus.style.color = "var(--text-soft)";
-
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encodeFormData(contactForm)
-      })
-        .then(function (response) {
-          if (!response.ok) {
-            throw new Error("Form submission failed.");
-          }
-
-          formStatus.textContent = "Thank you! Your message has been sent successfully.";
-          formStatus.style.color = "var(--teal-500)";
-          contactForm.reset();
-        })
-        .catch(function () {
-          formStatus.textContent = "Sorry, something went wrong. Please try again or email us directly at info@icehauscares.org.";
+        if (!contactForm.checkValidity()) {
+          formStatus.textContent = "Please complete the required fields.";
           formStatus.style.color = "#b23b3b";
-        });
-    });
+          return;
+        }
+
+        formStatus.textContent = "Sending...";
+        formStatus.style.color = "var(--text-soft)";
+
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encodeFormData(contactForm)
+        })
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("Form submission failed.");
+            }
+
+            formStatus.textContent = "Thank you! Your message has been sent successfully.";
+            formStatus.style.color = "var(--teal-500)";
+            contactForm.reset();
+          })
+          .catch(function () {
+            formStatus.textContent = "Sorry, something went wrong. Please try again or email us directly at info@icehauscares.org.";
+            formStatus.style.color = "#b23b3b";
+          });
+      });
+    }
 
     /* ---- Newsletter form - front-end feedback only ---- */
     var newsForm = document.getElementById("newsletterForm");
     var newsStatus = document.getElementById("newsStatus");
 
-    newsForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+    if (newsForm && newsStatus) {
+      newsForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-      if (!newsForm.checkValidity()) {
-        newsStatus.textContent = "Please enter a valid email.";
-        newsStatus.style.color = "#b23b3b";
-        return;
-      }
+        if (!newsForm.checkValidity()) {
+          newsStatus.textContent = "Please enter a valid email.";
+          newsStatus.style.color = "#b23b3b";
+          return;
+        }
 
-      newsStatus.textContent = "You're on the list. Newsletter connection coming soon.";
-      newsStatus.style.color = "var(--teal-500)";
-      newsForm.reset();
-    });
+        newsStatus.textContent = "You're on the list. Newsletter connection coming soon.";
+        newsStatus.style.color = "var(--teal-500)";
+        newsForm.reset();
+      });
+    }
 
     /* ---- Auto-update footer year ---- */
-    document.getElementById("year").textContent = new Date().getFullYear();
+    var yearEl = document.getElementById("year");
+
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
   })();
 </script>
 </body>
